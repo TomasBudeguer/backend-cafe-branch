@@ -55,15 +55,31 @@ export const obtenerProducto = async (req, res) => {
 export const editarProducto = async (req, res) => {
   try {
     // buscar el pproducto por el id, luego modificar los datos con el body
-    await Producto.findByIdAndUpdate(req.params.id, req.body)
+    await Producto.findByIdAndUpdate(req.params.id, req.body);
     // responder al frontend
     res.status(200).json({
-      mensaje: "El producto fue editado correctamente"
-    })
+      mensaje: "El producto fue editado correctamente",
+    });
   } catch (error) {
     console.log(error);
     res.status(404).json({
       mensaje: "Error el producto solicitado no pudo ser modificado",
+    });
+  }
+};
+
+export const borrarProducto = async (req, res) => {
+  try {
+    // buscar un producto por el id y borrar
+    await Producto.findByIdAndDelete(req.params.id)
+    // responder al frontend si pude eliminar el producto
+    res.status(200).json({
+      mensaje: "El producto fue correctamente eliminado"
+    })
+  } catch (error) {
+    console.log(error);
+    res.status(404).json({
+      mensaje: "Error el producto solicitado no pudo ser eliminado",
     });
   }
 };
