@@ -4,6 +4,8 @@ import cors from "cors";
 import path from 'path'
 import './database'
 import productosRouter from "./routes/productos.routes";
+import loginRouter from "./routes/login.routes";
+import registroRouter from "./routes/registro.routes";
 // crear una instancia de express
 const app = express();
 
@@ -31,3 +33,5 @@ app.use(express.static(path.join(__dirname,'../public')))
 // rutas: nombre de dominio + -----
 // http://localhost:4000/
 app.use('/apicafe', productosRouter)
+app.use('/apicafe', loginRouter)
+app.use('/apicafe', registroRouter)
