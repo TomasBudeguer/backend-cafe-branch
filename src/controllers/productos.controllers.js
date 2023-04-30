@@ -20,13 +20,13 @@ export const crearProducto = async (req, res) => {
     // manejar los errores de express validator
     const errores = validationResult(req);
     // errores.isEmpty() retorna true cuando no hay errores y retorna false cuando hay errores
-    // PREGUNTO SI HAY ERRORES asi: 
-    if(!errores.isEmpty()){
+    // PREGUNTO SI HAY ERRORES asi:
+    if (!errores.isEmpty()) {
       return res.status(400).json({
-        errores: errores.array()
-      })
+        errores: errores.array(),
+      });
     }
-    
+
     // extraer del body los datos
     console.log(req.body);
     // agregar la validacion correspondiente
@@ -88,15 +88,32 @@ export const editarProducto = async (req, res) => {
 export const borrarProducto = async (req, res) => {
   try {
     // buscar un producto por el id y borrar
-    await Producto.findByIdAndDelete(req.params.id)
+    await Producto.findByIdAndDelete(req.params.id);
     // responder al frontend si pude eliminar el producto
     res.status(200).json({
-      mensaje: "El producto fue correctamente eliminado"
-    })
+      mensaje: "El producto fue correctamente eliminado",
+    });
   } catch (error) {
     console.log(error);
     res.status(404).json({
       mensaje: "Error el producto solicitado no pudo ser eliminado",
     });
+  }
+};
+
+export const probar = async (req, res) => {
+  try {
+    const filtro = {};
+    const actualizacion = { $set: { precio: req.body } };
+    // buscar todos los productos en la BD
+    // const listaProductos = await Producto.find();
+    Producto.updateMany(filtro, actualizacion);
+    // responder al usuario que todo salio bien
+    res
+      .status(200)
+      .json({ mensaje: "Los precios se actualizaron correctamente" });
+  } catch (error) {
+    console.log(error);
+    res.status(404).json({ mensaje: "Error al actualizar los precios" });
   }
 };
