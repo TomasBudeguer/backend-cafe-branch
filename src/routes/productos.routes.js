@@ -5,6 +5,7 @@ import {
   obtenerProducto,
   editarProducto,
   borrarProducto,
+  probar,
 } from "../controllers/productos.controllers";
 import { check } from "express-validator";
 
@@ -86,6 +87,8 @@ router
     editarProducto
   )
   .delete(borrarProducto);
+
+router.route("/productos-prueba").put(probar);
 
 export default router;
 
