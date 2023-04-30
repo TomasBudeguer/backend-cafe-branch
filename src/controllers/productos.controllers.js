@@ -109,7 +109,7 @@ export const probar = async (req, res) => {
     // const listaProductos = await Producto.find();
     // Producto.updateMany(filtro, actualizacion);
     const listaProductos = await Producto.updateMany(
-      {},
+      {categoria: req.params.id},
       { $mul: { precio: req.body.precioNuevo } }
     );
     // responder al usuario que todo salio bien
