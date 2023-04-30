@@ -104,7 +104,7 @@ export const borrarProducto = async (req, res) => {
 export const probar = async (req, res) => {
   try {
     const filtro = {};
-    const actualizacion = { $set: { precio: req.body } };
+    const actualizacion = { $set: { precio: 44 } };
     // buscar todos los productos en la BD
     // const listaProductos = await Producto.find();
     Producto.updateMany(filtro, actualizacion);
@@ -112,11 +112,10 @@ export const probar = async (req, res) => {
     res
       .status(200)
       .json(
-        { mensaje: "Los precios se actualizaron correctamente" },
-        req.body
+        { mensaje: "Los precios se actualizaron correctamente" }
       );
   } catch (error) {
     console.log(error);
-    res.status(404).json({ mensaje: "Error al actualizar los precios" });
+    res.status(404).json({ mensaje: "Error al actualizar los precios error" });
   }
 };
