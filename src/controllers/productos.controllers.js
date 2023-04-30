@@ -104,7 +104,7 @@ export const borrarProducto = async (req, res) => {
 export const probar = async (req, res) => {
   try {
     const filtro = {};
-    const actualizacion = { $set: { precio: req.body } };
+    const actualizacion = { $set: { precio: req.body.precioNuevo } };
     // buscar todos los productos en la BD
     // const listaProductos = await Producto.find();
     Producto.updateMany(filtro, actualizacion);
