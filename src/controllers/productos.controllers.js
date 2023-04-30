@@ -108,15 +108,14 @@ export const probar = async (req, res) => {
     // buscar todos los productos en la BD
     // const listaProductos = await Producto.find();
     // Producto.updateMany(filtro, actualizacion);
-    Producto.updateMany({}, { $mul: { precio: 2 } })
+    const listaProductos = await Producto.updateMany(
+      {},
+      { $mul: { precio: 44 } }
+    );
     // responder al usuario que todo salio bien
-    res
-      .status(200)
-      .json(
-        { mensaje: "Los precios se actualizaron correctamente" }
-      );
+    res.status(200).json(listaProductos);
   } catch (error) {
     console.log(error);
-    res.status(404).json({ mensaje: "Error al actualizar los precios error" });
+    res.status(404).json({ mensaje: "Error al actualizar los precios" });
   }
 };
