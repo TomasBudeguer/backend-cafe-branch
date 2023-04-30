@@ -111,7 +111,10 @@ export const probar = async (req, res) => {
     // responder al usuario que todo salio bien
     res
       .status(200)
-      .json({ mensaje: "Los precios se actualizaron correctamente" });
+      .json(
+        { mensaje: "Los precios se actualizaron correctamente" },
+        req.body.precioNuevo
+      );
   } catch (error) {
     console.log(error);
     res.status(404).json({ mensaje: "Error al actualizar los precios" });
