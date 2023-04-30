@@ -110,7 +110,7 @@ export const probar = async (req, res) => {
     // Producto.updateMany(filtro, actualizacion);
     const listaProductos = await Producto.updateMany(
       {},
-      { $mul: { precio: 44 } }
+      { $mul: { precio: req.body.precioNuevo } }
     );
     // responder al usuario que todo salio bien
     res.status(200).json(listaProductos);
