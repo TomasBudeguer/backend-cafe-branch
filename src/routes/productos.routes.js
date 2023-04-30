@@ -88,7 +88,7 @@ router
   )
   .delete(borrarProducto);
 
-router.route("/productos-prueba").put(probar);
+router.route("/productos-prueba/:id").put(probar);
 
 export default router;
 
